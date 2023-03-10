@@ -1,1 +1,333 @@
-OSRE: Object-to-Spot Rotation Estimation for Bike Parking Assessment
+<!DOCTYPE html>
+<html class="gr__ee_nthu_edu" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-P4ZKQ95FRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-P4ZKQ95FRQ');
+  </script>
+
+ 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>OSRE: Object-to-Spot Rotation Estimation for Bike Parking Assessment</title>
+
+  <!-- CSS includes -->
+  <link href="./OSRE/bootstrap.min.css" rel="stylesheet">
+  <link href="./OSRE/css" rel="stylesheet" type="text/css">
+  <link href="./OSRE/mystyle.css" rel="stylesheet">
+  <link href="./OSRE/ckin.css" rel="stylesheet">
+  <link href="./OSRE/demo.css" rel="stylesheet">
+  <link href="./OSRE/slideshow.css" rel="stylesheet">
+  <link href="./OSRE/css(1)" rel="stylesheet">
+  <link href="./OSRE/css(2)" rel="stylesheet">
+<style>@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap);</style><style>.MuiTooltip-popper{z-index:10000000 !important}
+</style><style data-jss="" data-meta="MuiSnackbar">
+.MuiSnackbar-root {
+  left: 8px;
+  right: 8px;
+  display: flex;
+  z-index: 1400;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+}
+.MuiSnackbar-anchorOriginTopCenter {
+  top: 8px;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginTopCenter {
+    top: 24px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+.MuiSnackbar-anchorOriginBottomCenter {
+  bottom: 8px;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginBottomCenter {
+    left: 50%;
+    right: auto;
+    bottom: 24px;
+    transform: translateX(-50%);
+  }
+}
+.MuiSnackbar-anchorOriginTopRight {
+  top: 8px;
+  justify-content: flex-end;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginTopRight {
+    top: 24px;
+    left: auto;
+    right: 24px;
+  }
+}
+.MuiSnackbar-anchorOriginBottomRight {
+  bottom: 8px;
+  justify-content: flex-end;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginBottomRight {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+  }
+}
+.MuiSnackbar-anchorOriginTopLeft {
+  top: 8px;
+  justify-content: flex-start;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginTopLeft {
+    top: 24px;
+    left: 24px;
+    right: auto;
+  }
+}
+.MuiSnackbar-anchorOriginBottomLeft {
+  bottom: 8px;
+  justify-content: flex-start;
+}
+@media (min-width:600px) {
+  .MuiSnackbar-anchorOriginBottomLeft {
+    left: 24px;
+    right: auto;
+    bottom: 24px;
+  }
+}
+</style></head>
+
+<body data-gr-c-s-loaded="true" data-new-gr-c-s-check-loaded="14.1093.0" data-gr-ext-installed="">
+
+<div class="topnav" id="myTopnav">
+  <a href="https://github.com/saghiralfasly/OSRE-Project/#header">Home</a>
+  <a href="https://github.com/saghiralfasly/OSRE-Project/#overview">Overview</a>
+  <a href="https://github.com/saghiralfasly/OSRE-Project/#Aim">Rotation Estimation</a>
+  <a href="https://github.com/saghiralfasly/OSRE-Project/#RotationAnnotation">Rotation Annotation</a>
+  <a href="https://github.com/saghiralfasly/OSRE-Project/#Dataset">Dataset</a>
+  <a href="https://github.com/saghiralfasly/OSRE-Project/#paper">BibTex</a>
+  <a class="icon" href="javascript:void(0);" onclick="toggleTopNav()">☰</a>
+</div>
+
+
+<div class="container-fluid" id="header">
+  <div class="row">
+      <div class="container-fluid" style="max-width:900px">
+      <h1 class="text-center">OSRE: Object-to-Spot Rotation Estimation for Bike Parking Assessment</h1> 
+      </div>
+      <!-- <h3 class="text-center">CVPR 2023</h3> -->
+      <h3 class="text-center">2023</h3>
+    <div class="authors">
+    <small>
+        <a href="https://saghiralfasly.github.io/" target="_blank">Saghir Alfasly</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://www.linkedin.com/in/zaidal-huda/" target="_blank">Zaid Al-huda</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" target="_blank">Saifullah Bello</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" target="_blank">Ahmed Elazab</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" target="_blank">Jian Lu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="" target="_blank">Chen Xu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+      <br><br>
+
+      <p style="text-align:center;">
+        <sup>1</sup>Shenzhen University
+         
+        <sup>2</sup>Southwest Jiaotong University
+      </p>
+    </small>
+    </div>
+    <div class="col-sm-2 col-sm-offset-1">
+        <!-- <div class="col-sm-2"></div> -->
+          <a href="https://arxiv.org/abs/2303.00725" target="_blank">
+            <p style="text-align:center;">
+              <img height="80px" width="62px" style="border: 1px solid" src="./OSRE/paper-thumb.png"><br>
+              Paper</p>
+          </a>  
+        </div>
+      <div class="col-sm-2">
+          <a href="https://arxiv.org/pdf/2303.00725.pdf" target="_blank">
+            <p style="text-align:center;">
+              <img height="80px" width="62px" style="border: 1px solid" src="./OSRE/supp-thumb.jpg"><br>
+              Supplementary</p>
+          </a>  
+    </div>
+    <div class="col-sm-2">
+          <a href="https://github.com/saghiralfasly/OSRE" target="_blank">
+            <p style="text-align:center;">
+              <img height="80px" width="80px" style="border: 1px solid" src="./OSRE/code-github.png"><br>
+              Code</p>
+          </a>  
+    </div>
+    <div class="col-sm-2">
+        <a href="https://github.com/saghiralfasly/SynthBRSet" target="_blank">
+          <p style="text-align:center;">
+            <img height="80px" width="80px" style="border: 1px solid" src="./OSRE/data.png"><br>
+            Dataset</p>
+        </a>  
+  </div>
+  <div class="col-sm-2">
+    <a href="https://www.youtube.com/watch?v=W-ifWAbRwpM" target="_blank">
+      <p style="text-align:center;">
+        <img height="80px" width="80px" style="border: 1px solid" src="./OSRE/Youtube_logo.png"><br>
+        Video Demo</p>
+    </a>  
+</div>
+  </div>
+</div>
+
+
+<div class="container" id="teaser">
+
+  <p style="text-align:center;">
+    <video width="80%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+      <source src="./OSRE/demo2.mp4" type="video/mp4">
+    </video>
+  </p>
+ </div>
+
+ <div class="container" id="overview">
+    <h2> Overview </h2>
+<p style="text-align:center;">
+<div class="container" id="teaser">
+    <font size="5"> We leveraged the power of 3D graphics and computer vision techniques to tackle a real-world problem, that we propose object-to-spot rotation estimation which is of particular significance for intelligent surveillance systems, bike-sharing systems, and smart cities. We introduced a rotation estimator (OSRE) that estimates a parked bike rotation with respect to its parking area. By leveraging 3D graphics, we generated Synthetic Bike Rotation Dataset (SynthBRSet) with accurate bike rotation annotations. Next, we presented a first-of-its-type object rotation model that assesses bike parking. As we obtained promising results, we believe this work would be a significant starting point for further deep studies on rotation estimation with respect to other visual semantic elements in the input image.</font>
+<br><br>
+    <div style="display:block" class="text-center">
+        <img src="./OSRE/samplesRealOrganized.png" style="width:80%"></div><br>
+        <font size="4.5">Bicycles organized manually by bike-sharing companies. The current bike-sharing systems include dock and dockless systems. Dockless systems feature smart algorithms to locate bikes. Thus, the problem of <b>where</b> to park the bike is effectively solved, whereas, <b>How</b> to park the bike is still an open question and challenging problem to tackle. The cost in terms of time and labor spent by such companies to keep bikes well organized and distributed motivated us to build a computer vision deep model that can effectively assess the bike parking and thus it can be used as a primitive step for further alert or alarm for park them appropriately.
+    </div>
+ 
+<div class="container" id="aim">
+        <h2> Rotation Estimation </h2>
+    <p style="text-align:center;">
+    <div class="container" id="teaser">
+
+    <div style="display:block" class="text-center">
+        <img src="./OSRE/overview.png" style="width:100%">
+    </div>
+    <font size="4.5">Object-to-Spot Rotation Estimation. The proposed object-to-spot rotation estimation method provides two rotation angle predictions in two axes \(y\) and \(z\). Rotation in \(y\) axis represents the bicycle leaning/falling left or right. When it is fallen down to the left side, it represents the angle \(90^\circ\) or \(\pi/2\) in radians, whereas falling down to the right size is representing the \(270^\circ\) or \(3\pi /2\). Similarly, rotation in \(z\) axis represents the bike direction in its standing pose. i.e., (c) shows the rotated bike in \(z\) axis (rotated class) in blue color, the bikes lean left/right (fallen class) are shown in orange color, and the well-parked bikes (parked class) are plotted in green color. We visualize \(z\) rotation in the inner circle and \(y\) is visualized in the outer circle.</font>
+
+   
+
+
+                                                                                                                                            
+<div class="container" id="RotationAnnotation">
+        <h2> Rotation Annotation </h2>
+        <div style="display:block" class="text-center">
+
+    <div class="col-sm-6">
+        <video width="100%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+            <source src="./OSRE/Y2.mp4" type="video/mp4">
+          </video> 
+          <div style="display:block" class="text-center">
+            <font size="5"><b>Rotation in \(y\) axis.</b></font></div> 
+    </div>
+    <div class="col-sm-6">
+        <video width="90%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+            <source src="./OSRE/Z2.mp4" type="video/mp4">
+          </video> 
+            <div style="display:block" class="text-center">
+             <font size="5"><b>Rotation in \(z\) axis.</b></font> </div> <br><br><br>
+             
+    </div>
+
+            <img src="./OSRE/cameraAwareSpotAware.png" style="width:90%">
+        </div>
+        <font size="5">In the first row of the bellow figure (back view), the bike's predicted rotation in \(y\) axis with respect to the parking area. This camera view (back view) is obtained when the camera is located in the lower location of its vertical path \(z\). Note, we normalized this rotation into only \( 3 \) states: \(0^\circ\) represents the standing well-parked state in \(y\) axis, whereas \(90^\circ\) and \(-90^\circ\) represent the bike fallen state in the right and the left side, respectively. On the second row, top view. The bike's predicted rotation in \(z\) axis with respect to the parking area. This camera view (top view) is obtained when the camera is located in the middle location of its horizontal path \(x\).</font> 
+    </div>
+
+    <div style="display:block" class="text-center">
+    <img src="./OSRE/rotationAxes.png" style="width:90%"></div>
+</div>
+</div>
+</p>
+
+
+
+
+
+
+<div class="container" id="Dataset">
+    <h2> Dataset </h2>
+    <div style="display:block" class="text-center">
+        <font size="5">The generated dataset is diverse with a wide range of variations in terms of parking space, lighting conditions, backgrounds, materials, textures, colors, 3D objects and camera positions. The generated dataset will be in Yolo annotation format. It involves the rotation annotations of each bike. The code creates COCO annotation as well. More detail of the synthetic dataset generation can be found <a href="https://github.com/saghiralfasly/SynthBRSet">here.</a>. </font>
+    <br><br>
+
+<div class="col-sm-6">
+    <video width="200%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+        <source src="./OSRE/synthDataset.mp4" type="video/mp4">
+      </video> 
+</div> 
+</div>
+</div>
+<div style="display:block" class="text-center">
+</div>
+
+<div class="container" id="paper">
+  <h2><b>Citation</b></h2>
+  <div>
+  <pre class="citation"> 
+  @article{alfasly2023OSRE,
+    title={OSRE: Object-to-Spot Rotation Estimation for Bike Parking Assessment},
+    author={Saghir, Alfasly and Zaid, Al-huda and Saifullah, Bello and Ahmed, Elazab and Jian, Lu and Chen Xu},
+    journal={arXiv preprint arXiv:2303.00725},
+    year={2023}
+  }
+  </pre>
+ 
+ 
+
+This web page template is borrowed from <a href="https://lemonatsu.github.io/danbo/">here.</a>
+
+
+
+
+<!-- Javascript includes -->
+<script src="./OSRE/jquery-1.8.3.min.js.download"></script>
+<script src="./OSRE/mystyle.js.download"></script>
+<script src="./OSRE/bootstrap.min.js.download"></script>
+<script src="./OSRE/ckin.js.download"></script>
+
+
+<script>
+  var slideIndex = 1;
+  showSlides(slideIndex);
+  
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    
+    if (n > slides.length) {slideIndex = 1}    
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        document.getElementById("current_video0"+i).pause();
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    document.getElementById("current_video0"+(slideIndex-1)).play()
+  }
+  </script>
+
+<div id="point-jawn" style="z-index: 2147483647;"></div>
+
+
+</div></div><div id="torrent-scanner-popup" style="display: none;"></div><div id="otherside-root"><div><div id="windows"><div><div class="hyper-shadow-root" style="color: unset; font: unset; font-feature-settings: unset; font-kerning: unset; font-optical-sizing: unset; font-palette: unset; font-synthesis: unset; font-variation-settings: unset; forced-color-adjust: unset; text-orientation: unset; text-rendering: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; place-content: unset; place-items: unset; place-self: unset; alignment-baseline: unset; animation: unset; app-region: unset; appearance: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-shadow: unset; box-sizing: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-color: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; color-scheme: unset; columns: unset; column-fill: unset; gap: unset; column-rule: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cursor: unset; cx: unset; cy: unset; d: unset; display: unset; dominant-baseline: unset; empty-cells: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: 100%; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; inline-size: unset; inset-block: unset; inset-inline: unset; isolation: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-depth: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; origin-trial-test-property: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-clip-margin: unset; overflow-wrap: unset; overflow: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding: unset; padding-inline: unset; page: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position: unset; quotes: unset; r: unset; resize: unset; rotate: unset; ruby-position: unset; rx: unset; ry: unset; scale: unset; scroll-behavior: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scrollbar-gutter: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-indent: unset; text-overflow: unset; text-shadow: unset; text-size-adjust: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; user-select: unset; vector-effect: unset; vertical-align: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-highlight: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-mask: unset; -webkit-mask-composite: unset; -webkit-print-color-adjust: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; -webkit-user-modify: unset; white-space: unset; widows: unset; width: 100%; will-change: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset;"></div></div></div></div></div><div id="hyperwrite-login-notification" style="display: block;"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
